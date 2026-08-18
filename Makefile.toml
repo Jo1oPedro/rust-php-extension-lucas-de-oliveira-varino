@@ -1,0 +1,9 @@
+[tasks.deploy]
+description = "Build release and install .so into local php"
+command = "sudo"
+args = ["cp", "target/release/libextensao_varinha.so", "/usr/lib/php/20240924/"]
+dependencies = ["build-release"]
+
+[tasks.build-release]
+command = "cargo"
+args = ["build", "--release"]
