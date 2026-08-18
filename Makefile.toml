@@ -7,3 +7,9 @@ dependencies = ["build-release"]
 [tasks.build-release]
 command = "cargo"
 args = ["build", "--release"]
+
+[tasks.stubs]
+description = "Generate PHP IDE stub file from the extension source"
+command = "cargo"
+args = ["php", "stubs", "--out", "stubs/extensao_varinha.stubs.php"]
+dependencies = ["build-release"]
