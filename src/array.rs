@@ -94,15 +94,7 @@ impl Array {
     }
 
     pub fn set(&mut self, index: i64, valor: &Zval) -> PhpResult<i64> {
-        if index < 0 || index as usize >= self.elements.len() {
-            return Err(PhpException::default(
-                format!(
-                    "Index {} out of bounds (size {})",
-                    index,
-                    self.elements.len()
-                ))
-            );
-        }
+        self.check_position(index)?;
 
         self.checar_tipo(valor)?;
 
@@ -116,15 +108,7 @@ impl Array {
             return Err(PhpException::default("array is at full capacity".into()));
         }
 
-        if index < 0 || index as usize >= self.elements.len() {
-            return Err(PhpException::default(
-                format!(
-                    "Index {} out of bounds (size {})",
-                    index,
-                    self.elements.len()
-                ))
-            );
-        }
+        self.check_position(index)?;
 
         self.checar_tipo(valor)?;
 
@@ -147,6 +131,20 @@ impl Array {
                 self.array_type,
                 tipo_recebido
             )));
+        }
+
+        Ok(())
+    }
+
+    fn check_position(&self, index: i64) -> PhpResult<()> {
+        if index < 0 || index as usize >= self.elements.len() {
+            return Err(PhpException::default(
+                format!(
+                    "Index {} out of bounds (size {})",
+                    index,
+                    self.elements.len()
+                ))
+            );
         }
 
         Ok(())
