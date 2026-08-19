@@ -40,15 +40,7 @@ impl Array {
 
     // Access
     pub fn get(&self, index: i64) -> PhpResult<Zval> {
-        if index < 0 || index as usize >= self.elements.len() {
-            return Err(PhpException::default(
-               format!(
-                   "Index {} out of bounds (size {})",
-                   index,
-                   self.elements.len()
-               )
-            ));
-        }
+        self.check_position(index)?;
 
         Ok(self.elements[index as usize].shallow_clone())
     }
@@ -79,57 +71,57 @@ impl Array {
     }
 
     // Mutation
-    pub fn add(&mut self, valor: &Zval) -> PhpResult<i64> {
+    pub fn add(&mut self, value: &Zval) -> PhpResult<i64> {
         if self.elements.len() >= self.capacity {
             return Err(PhpException::default(
                 "array is at full capacity".into(),
             ));
         }
 
-        self.checar_tipo(valor)?;
+        self.check_type(value)?;
 
-        self.elements.push(valor.shallow_clone());
+        self.elements.push(value.shallow_clone());
 
         Ok(self.elements.len() as i64)
     }
 
-    pub fn set(&mut self, index: i64, valor: &Zval) -> PhpResult<i64> {
+    pub fn set(&mut self, index: i64, value: &Zval) -> PhpResult<i64> {
         self.check_position(index)?;
 
-        self.checar_tipo(valor)?;
+        self.check_type(value)?;
 
-        self.elements[index as usize] = valor.shallow_clone();
+        self.elements[index as usize] = value.shallow_clone();
 
         Ok(self.elements.len() as i64)
     }
 
-    pub fn insert(&mut self, index: i64, valor: &Zval) -> PhpResult<i64> {
+    pub fn insert(&mut self, index: i64, value: &Zval) -> PhpResult<i64> {
         if self.elements.len() >= self.capacity {
             return Err(PhpException::default("array is at full capacity".into()));
         }
 
         self.check_position(index)?;
 
-        self.checar_tipo(valor)?;
+        self.check_type(value)?;
 
-        self.elements.insert(index as usize, valor.shallow_clone());
+        self.elements.insert(index as usize, value.shallow_clone());
 
         Ok((self.elements.len() - 1) as i64)
     }
 }
 
 impl Array {
-    fn checar_tipo(&self, valor: &Zval) -> PhpResult<()> {
-        let tipo_recebido = match valor.object() {
+    fn check_type(&self, value: &Zval) -> PhpResult<()> {
+        let type_received = match value.object() {
             Some(obj) => obj.get_class_name()?,
-            None => php_type_name(valor.get_type()),
+            None => php_type_name(value.get_type()),
         };
 
-        if tipo_recebido != self.array_type {
+        if type_received != self.array_type {
             return Err(PhpException::default(format!(
                 "expected type '{}', got '{}'",
                 self.array_type,
-                tipo_recebido
+                type_received
             )));
         }
 
