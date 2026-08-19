@@ -86,24 +86,49 @@ impl Array {
             ));
         }
 
+        self.checar_tipo(valor)?;
+
+        self.elements.push(valor.shallow_clone());
+
+        Ok(self.elements.len() as i64)
+    }
+
+    pub fn set(&mut self, index: i64, valor: &Zval) -> PhpResult<i64> {
+        if
+            index < 0 || index as usize >= self.elements.len() {
+            return Err(PhpException::default(
+                format!(
+                    "Index {} out of bounds (size {})",
+                    index,
+                    self.elements.len()
+                ))
+            );
+        }
+
+        self.checar_tipo(valor)?;
+
+        self.elements[index as usize] = valor.shallow_clone();
+
+        Ok(self.elements.len() as i64)
+    }
+}
+
+impl Array {
+    fn checar_tipo(&self, valor: &Zval) -> PhpResult<()> {
         let tipo_recebido = match valor.object() {
             Some(obj) => obj.get_class_name()?,
             None => php_type_name(valor.get_type()),
         };
 
         if tipo_recebido != self.array_type {
-            return Err(PhpException::default(
-                format!(
-                    "expected type '{}', got '{}'",
-                    self.array_type,
-                    tipo_recebido
-                )
-            ))
+            return Err(PhpException::default(format!(
+                "expected type '{}', got '{}'",
+                self.array_type,
+                tipo_recebido
+            )));
         }
 
-        self.elements.push(valor.shallow_clone());
-
-        Ok(self.elements.len() as i64)
+        Ok(())
     }
 }
 

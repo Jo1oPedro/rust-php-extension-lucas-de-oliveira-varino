@@ -58,6 +58,13 @@ namespace Varinha {
         public function last(): mixed {}
 
         /**
+         * @param int $index
+         * @param mixed $valor
+         * @return int
+         */
+        public function set(int $index, mixed $valor): int {}
+
+        /**
          * @return int
          */
         public function size(): int {}
