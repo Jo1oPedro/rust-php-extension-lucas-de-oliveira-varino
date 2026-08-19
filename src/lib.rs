@@ -1,8 +1,7 @@
-pub mod vector;
+pub mod array;
 
 use std::collections::HashMap;
 use ext_php_rs::prelude::*;
-
 
 #[php_function]
 pub fn varinha(mensagem: String) {
@@ -48,7 +47,7 @@ pub fn call_varinha_headers() -> HashMap<String, Vec<String>> {
 #[php_module]
 pub fn module(module: ModuleBuilder) -> ModuleBuilder {
     module
-        .class::<vector::Vector>()
+        .class::<array::Array>()
         .function(wrap_function!(varinha))
         .function(wrap_function!(call_varinha))
         .function(wrap_function!(call_varinha_headers))

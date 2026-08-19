@@ -3,12 +3,28 @@
 // Stubs for extensao_varinha
 
 namespace Varinha {
-    class Vector {
+    class Array {
         /**
-         * @param int $size
-         * @param string $vector_type
+         * @param int $capacity
+         * @param string $array_type
          */
-        public function __construct(int $size, string $vector_type) {}
+        public function __construct(int $capacity, string $array_type) {}
+
+        /**
+         * @param mixed $valor
+         * @return void
+         */
+        public function adicionar(mixed $valor): void {}
+
+        /**
+         * @return string
+         */
+        public function arrayType(): string {}
+
+        /**
+         * @return array
+         */
+        public function getAll(): array {}
 
         /**
          * @return int
@@ -19,11 +35,6 @@ namespace Varinha {
          * @return string
          */
         public function teste(): string {}
-
-        /**
-         * @return string
-         */
-        public function vectorType(): string {}
     }
 }
 
