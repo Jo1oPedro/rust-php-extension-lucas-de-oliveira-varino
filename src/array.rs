@@ -94,8 +94,7 @@ impl Array {
     }
 
     pub fn set(&mut self, index: i64, valor: &Zval) -> PhpResult<i64> {
-        if
-            index < 0 || index as usize >= self.elements.len() {
+        if index < 0 || index as usize >= self.elements.len() {
             return Err(PhpException::default(
                 format!(
                     "Index {} out of bounds (size {})",
@@ -110,6 +109,28 @@ impl Array {
         self.elements[index as usize] = valor.shallow_clone();
 
         Ok(self.elements.len() as i64)
+    }
+
+    pub fn insert(&mut self, index: i64, valor: &Zval) -> PhpResult<i64> {
+        if self.elements.len() >= self.capacity {
+            return Err(PhpException::default("array is at full capacity".into()));
+        }
+
+        if index < 0 || index as usize >= self.elements.len() {
+            return Err(PhpException::default(
+                format!(
+                    "Index {} out of bounds (size {})",
+                    index,
+                    self.elements.len()
+                ))
+            );
+        }
+
+        self.checar_tipo(valor)?;
+
+        self.elements.insert(index as usize, valor.shallow_clone());
+
+        Ok((self.elements.len() - 1) as i64)
     }
 }
 

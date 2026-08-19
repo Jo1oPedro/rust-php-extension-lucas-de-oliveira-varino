@@ -43,6 +43,13 @@ namespace Varinha {
         public function getAll(): array {}
 
         /**
+         * @param int $index
+         * @param mixed $valor
+         * @return int
+         */
+        public function insert(int $index, mixed $valor): int {}
+
+        /**
          * @return bool
          */
         public function isEmpty(): bool {}
