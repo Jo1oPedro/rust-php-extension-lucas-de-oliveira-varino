@@ -11,10 +11,10 @@ namespace Varinha {
         public function __construct(int $capacity, string $array_type) {}
 
         /**
-         * @param mixed $valor
+         * @param mixed $value
          * @return int
          */
-        public function add(mixed $valor): int {}
+        public function add(mixed $value): int {}
 
         /**
          * @return string
@@ -44,10 +44,10 @@ namespace Varinha {
 
         /**
          * @param int $index
-         * @param mixed $valor
+         * @param mixed $value
          * @return int
          */
-        public function insert(int $index, mixed $valor): int {}
+        public function insert(int $index, mixed $value): int {}
 
         /**
          * @return bool
@@ -66,10 +66,16 @@ namespace Varinha {
 
         /**
          * @param int $index
-         * @param mixed $valor
+         * @return mixed
+         */
+        public function remove(int $index): mixed {}
+
+        /**
+         * @param int $index
+         * @param mixed $value
          * @return int
          */
-        public function set(int $index, mixed $valor): int {}
+        public function set(int $index, mixed $value): int {}
 
         /**
          * @return int

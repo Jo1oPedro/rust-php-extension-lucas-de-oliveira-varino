@@ -108,6 +108,12 @@ impl Array {
 
         Ok((self.elements.len() - 1) as i64)
     }
+
+    pub fn remove(&mut self, index: i64) -> PhpResult<Zval> {
+        self.check_position(index)?;
+
+        Ok(self.elements.remove(index as usize))
+    }
 }
 
 impl Array {
