@@ -118,6 +118,10 @@ impl Array {
     pub fn pop(&mut self) -> PhpResult<Zval> {
         self.elements.pop().ok_or_else(|| PhpException::default("array is empty".into()))
     }
+
+    pub fn clean(&mut self) -> PhpResult<()> {
+        Ok(self.elements.clear())
+    }
 }
 
 impl Array {

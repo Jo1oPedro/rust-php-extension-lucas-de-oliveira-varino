@@ -27,6 +27,11 @@ namespace Varinha {
         public function capacity(): int {}
 
         /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
          * @return mixed
          */
         public function first(): mixed {}
