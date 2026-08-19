@@ -1,5 +1,6 @@
 pub mod array;
 pub mod vector;
+pub mod stack;
 
 use std::collections::HashMap;
 use ext_php_rs::prelude::*;
