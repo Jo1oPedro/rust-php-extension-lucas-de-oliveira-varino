@@ -12,9 +12,9 @@ namespace Varinha {
 
         /**
          * @param mixed $valor
-         * @return void
+         * @return int
          */
-        public function adicionar(mixed $valor): void {}
+        public function add(mixed $valor): int {}
 
         /**
          * @return string

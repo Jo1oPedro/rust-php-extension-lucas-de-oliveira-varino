@@ -27,26 +27,18 @@ impl Array {
         })
     }
 
-    pub fn array_type(&self) -> String {
-        self.array_type.clone()
-    }
+    // Metadata
+    pub fn array_type(&self) -> String { self.array_type.clone() }
 
-    pub fn size(&self) -> i64 {
-        self.elements.len() as i64
-    }
+    pub fn size(&self) -> i64 { self.elements.len() as i64 }
 
-    pub fn capacity(&self) -> i64 {
-        self.capacity as i64
-    }
+    pub fn capacity(&self) -> i64 { self.capacity as i64 }
 
-    pub fn is_empty(&self) -> bool {
-        self.elements.is_empty()
-    }
+    pub fn is_empty(&self) -> bool { self.elements.is_empty() }
 
-    pub fn is_full(&self) -> bool {
-        self.elements.len() == self.capacity
-    }
+    pub fn is_full(&self) -> bool { self.elements.len() == self.capacity }
 
+    // Access
     pub fn get(&self, index: i64) -> PhpResult<Zval> {
         if index < 0 || index as usize >= self.elements.len() {
             return Err(PhpException::default(
@@ -86,7 +78,8 @@ impl Array {
             .collect())
     }
 
-    pub fn adicionar(&mut self, valor: &Zval) -> PhpResult<()> {
+    // Mutation
+    pub fn add(&mut self, valor: &Zval) -> PhpResult<i64> {
         if self.elements.len() >= self.capacity {
             return Err(PhpException::default(
                 "array is at full capacity".into(),
@@ -95,7 +88,7 @@ impl Array {
 
         let tipo_recebido = match valor.object() {
             Some(obj) => obj.get_class_name()?,
-            None => valor.get_type().to_string(),
+            None => php_type_name(valor.get_type()),
         };
 
         if tipo_recebido != self.array_type {
@@ -103,14 +96,14 @@ impl Array {
                 format!(
                     "expected type '{}', got '{}'",
                     self.array_type,
-                    php_type_name(valor.get_type())
+                    tipo_recebido
                 )
             ))
         }
 
         self.elements.push(valor.shallow_clone());
 
-        Ok(())
+        Ok(self.elements.len() as i64)
     }
 }
 
