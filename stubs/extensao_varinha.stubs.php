@@ -65,6 +65,11 @@ namespace Varinha {
         public function last(): mixed {}
 
         /**
+         * @return mixed
+         */
+        public function pop(): mixed {}
+
+        /**
          * @param int $index
          * @return mixed
          */

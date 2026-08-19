@@ -114,6 +114,10 @@ impl Array {
 
         Ok(self.elements.remove(index as usize))
     }
+
+    pub fn pop(&mut self) -> PhpResult<Zval> {
+        self.elements.pop().ok_or_else(|| PhpException::default("array is empty".into()))
+    }
 }
 
 impl Array {
