@@ -3,7 +3,7 @@
 // Stubs for extensao_varinha
 
 namespace Varinha {
-    class Array {
+    class VarinhaArray {
         /**
          * @param int $capacity
          * @param string $array_type
@@ -22,19 +22,45 @@ namespace Varinha {
         public function arrayType(): string {}
 
         /**
+         * @return int
+         */
+        public function capacity(): int {}
+
+        /**
+         * @return mixed
+         */
+        public function first(): mixed {}
+
+        /**
+         * @param int $index
+         * @return mixed
+         */
+        public function get(int $index): mixed {}
+
+        /**
          * @return array
          */
         public function getAll(): array {}
 
         /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @return bool
+         */
+        public function isFull(): bool {}
+
+        /**
+         * @return mixed
+         */
+        public function last(): mixed {}
+
+        /**
          * @return int
          */
         public function size(): int {}
-
-        /**
-         * @return string
-         */
-        public function teste(): string {}
     }
 }
 

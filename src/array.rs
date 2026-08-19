@@ -1,9 +1,10 @@
 use ext_php_rs::prelude::*;
 use ext_php_rs::types::Zval;
 use ext_php_rs::exception::PhpException;
+use ext_php_rs::flags::DataType;
 
 #[php_class]
-#[php(name = "Varinha\\Array")]
+#[php(name = "Varinha\\VarinhaArray")]
 pub struct Array {
     elements: Vec<Zval>,
     array_type: String,
@@ -34,6 +35,57 @@ impl Array {
         self.elements.len() as i64
     }
 
+    pub fn capacity(&self) -> i64 {
+        self.capacity as i64
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.elements.is_empty()
+    }
+
+    pub fn is_full(&self) -> bool {
+        self.elements.len() == self.capacity
+    }
+
+    pub fn get(&self, index: i64) -> PhpResult<Zval> {
+        if index < 0 || index as usize >= self.elements.len() {
+            return Err(PhpException::default(
+               format!(
+                   "Index {} out of bounds (size {})",
+                   index,
+                   self.elements.len()
+               )
+            ));
+        }
+
+        Ok(self.elements[index as usize].shallow_clone())
+    }
+
+    pub fn first(&self) -> PhpResult<Zval> {
+        if self.is_empty() {
+            return Err(PhpException::default(
+                "array is empty".into()
+            ));
+        }
+        Ok(self.get(0)?.shallow_clone())
+    }
+
+    pub fn last(&self) -> PhpResult<Zval> {
+        if self.is_empty() {
+            return Err(PhpException::default(
+                "array is empty".into()
+            ))
+        }
+        Ok(self.get(self.size() - 1)?.shallow_clone())
+    }
+
+    pub fn get_all(&self) -> PhpResult<Vec<Zval>> {
+        Ok(self.elements
+            .iter()
+            .map(|e| e.shallow_clone())
+            .collect())
+    }
+
     pub fn adicionar(&mut self, valor: &Zval) -> PhpResult<()> {
         if self.elements.len() >= self.capacity {
             return Err(PhpException::default(
@@ -41,12 +93,17 @@ impl Array {
             ));
         }
 
-        if valor.get_type().to_string() != self.array_type {
+        let tipo_recebido = match valor.object() {
+            Some(obj) => obj.get_class_name()?,
+            None => valor.get_type().to_string(),
+        };
+
+        if tipo_recebido != self.array_type {
             return Err(PhpException::default(
                 format!(
                     "expected type '{}', got '{}'",
                     self.array_type,
-                    valor.get_type()
+                    php_type_name(valor.get_type())
                 )
             ))
         }
@@ -55,11 +112,22 @@ impl Array {
 
         Ok(())
     }
+}
 
-    pub fn get_all(&mut self) -> Vec<Zval> {
-        self.elements
-            .iter()
-            .map(|z| z.shallow_clone())
-            .collect()
-    }
+fn php_type_name(dt: DataType) -> String {
+    match dt {
+        DataType::Long => "int",
+        DataType::Double => "float",
+        DataType::String => "string",
+        DataType::Bool => "bool",
+        DataType::True => "bool",
+        DataType::False => "bool",
+        DataType::Array => "array",
+        DataType::Null => "null",
+        DataType::Object(_) => "object",
+        DataType::Callable => "callable",
+        DataType::Resource => "resource",
+        DataType::Reference => "reference",
+        _ => "mixed",
+    }.to_string()
 }
