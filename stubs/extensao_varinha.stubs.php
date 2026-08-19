@@ -81,6 +81,12 @@ namespace Varinha {
         public function remove(int $index): mixed {}
 
         /**
+         * @param mixed $needle
+         * @return mixed
+         */
+        public function search(mixed $needle): mixed {}
+
+        /**
          * @param int $index
          * @param mixed $value
          * @return int

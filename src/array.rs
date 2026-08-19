@@ -122,6 +122,15 @@ impl Array {
     pub fn clean(&mut self) -> PhpResult<()> {
         Ok(self.elements.clear())
     }
+
+    //Search
+    pub fn search(&self, needle: &Zval) -> PhpResult<Zval> {
+        self.elements
+            .iter()
+            .find(|element| element.is_identical(needle))
+            .map(|element| element.shallow_clone())
+            .ok_or_else(|| PhpException::default("Searched value not found on array".into()))
+    }
 }
 
 impl Array {
