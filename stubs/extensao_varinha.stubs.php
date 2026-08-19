@@ -48,6 +48,12 @@ namespace Varinha {
         public function getAll(): array {}
 
         /**
+         * @param mixed $needle
+         * @return int
+         */
+        public function indexOf(mixed $needle): int {}
+
+        /**
          * @param int $index
          * @param mixed $value
          * @return int

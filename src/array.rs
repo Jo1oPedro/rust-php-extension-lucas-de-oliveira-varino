@@ -131,6 +131,14 @@ impl Array {
             .map(|element| element.shallow_clone())
             .ok_or_else(|| PhpException::default("Searched value not found on array".into()))
     }
+
+    pub fn index_of(&self, needle: &Zval) -> PhpResult<i64> {
+        self.elements
+            .iter()
+            .position(|element| element.is_identical(needle))
+            .map(|index| index as i64)
+            .ok_or_else(|| PhpException::default("Index of needle not found on array".into()))
+    }
 }
 
 impl Array {
