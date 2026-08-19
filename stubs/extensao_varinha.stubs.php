@@ -104,6 +104,105 @@ namespace Varinha {
          */
         public function size(): int {}
     }
+
+    class VarinhaVector {
+        public function __construct() {}
+
+        /**
+         * @param mixed $value
+         * @return int
+         */
+        public function add(mixed $value): int {}
+
+        /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
+         * @param mixed $value
+         * @return bool
+         */
+        public function contains(mixed $value): bool {}
+
+        /**
+         * @param array $values
+         * @return int
+         */
+        public function extend(array $values): int {}
+
+        /**
+         * @return mixed
+         */
+        public function first(): mixed {}
+
+        /**
+         * @param int $index
+         * @return mixed
+         */
+        public function get(int $index): mixed {}
+
+        /**
+         * @return array
+         */
+        public function getAll(): array {}
+
+        /**
+         * @param mixed $value
+         * @return int
+         */
+        public function indexOf(mixed $value): int {}
+
+        /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @return mixed
+         */
+        public function last(): mixed {}
+
+        /**
+         * @return mixed
+         */
+        public function pop(): mixed {}
+
+        /**
+         * @param int $index
+         * @return mixed
+         */
+        public function remove(int $index): mixed {}
+
+        /**
+         * @param int $additional
+         * @return void
+         */
+        public function reserve(int $additional): void {}
+
+        /**
+         * @param mixed $value
+         * @return mixed
+         */
+        public function search(mixed $value): mixed {}
+
+        /**
+         * @param int $index
+         * @param mixed $value
+         * @return int
+         */
+        public function set(int $index, mixed $value): int {}
+
+        /**
+         * @return void
+         */
+        public function shrinkToFit(): void {}
+
+        /**
+         * @return int
+         */
+        public function size(): int {}
+    }
 }
 
 namespace {
