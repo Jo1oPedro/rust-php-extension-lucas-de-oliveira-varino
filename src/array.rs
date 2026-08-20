@@ -1,5 +1,6 @@
+use ext_php_rs::boxed::ZBox;
 use ext_php_rs::prelude::*;
-use ext_php_rs::types::Zval;
+use ext_php_rs::types::{ZendHashTable, Zval};
 use ext_php_rs::exception::PhpException;
 use ext_php_rs::flags::DataType;
 
@@ -138,6 +139,15 @@ impl Array {
             .position(|element| element.is_identical(needle))
             .map(|index| index as i64)
             .ok_or_else(|| PhpException::default("Index of needle not found on array".into()))
+    }
+
+    pub fn __debug_info(&self) -> PhpResult<ZBox<ZendHashTable>> {
+        let mut hash_table: ZBox<ZendHashTable> = ZendHashTable::new();
+        for element in &self.elements {
+            hash_table.push(element.shallow_clone());
+        }
+
+        Ok(hash_table)
     }
 }
 
