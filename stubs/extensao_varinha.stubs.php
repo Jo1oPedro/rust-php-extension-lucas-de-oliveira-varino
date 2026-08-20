@@ -105,6 +105,68 @@ namespace Varinha {
         public function size(): int {}
     }
 
+    class VarinhaHashMap {
+        /**
+         * @param array|null $initial_values
+         */
+        public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
+         * @param string $key
+         * @return mixed
+         */
+        public function get(string $key): mixed {}
+
+        /**
+         * @param string $key
+         * @return bool
+         */
+        public function has(string $key): bool {}
+
+        /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @return array
+         */
+        public function keys(): array {}
+
+        /**
+         * @param string $key
+         * @param mixed $value
+         * @return int
+         */
+        public function put(string $key, mixed $value): int {}
+
+        /**
+         * @param string $key
+         * @return mixed
+         */
+        public function remove(string $key): mixed {}
+
+        /**
+         * @return int
+         */
+        public function size(): int {}
+
+        /**
+         * @return array
+         */
+        public function toArray(): array {}
+
+        /**
+         * @return array
+         */
+        public function values(): array {}
+    }
+
     class VarinhaQueue {
         /**
          * @param array|null $initial_values

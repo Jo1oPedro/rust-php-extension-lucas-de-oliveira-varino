@@ -2,6 +2,7 @@ pub mod array;
 pub mod vector;
 pub mod stack;
 pub mod queue;
+pub mod hash_map;
 
 use std::collections::HashMap;
 use ext_php_rs::prelude::*;
@@ -53,6 +54,7 @@ pub fn module(module: ModuleBuilder) -> ModuleBuilder {
         .class::<array::Array>()
         .class::<vector::Vector>()
         .class::<queue::Queue>()
+        .class::<hash_map::VarinhaHashMap>()
         .function(wrap_function!(varinha))
         .function(wrap_function!(call_varinha))
         .function(wrap_function!(call_varinha_headers))
