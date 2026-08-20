@@ -1,5 +1,5 @@
 use ext_php_rs::prelude::*;
-use ext_php_rs::types::Zval;
+use ext_php_rs::types::{ZendHashTable, Zval};
 
 #[php_class]
 #[php(name = "Varinha\\VarinhaVector")]
@@ -9,10 +9,16 @@ pub struct Vector {
 
 #[php_impl]
 impl Vector {
-    pub fn __construct() -> PhpResult<Self> {
-        Ok(Vector {
-            elements: vec![]
-        })
+    pub fn __construct(initial_values: Option<&ZendHashTable>) -> PhpResult<Self> {
+        let mut elements: Vec<Zval> = Vec::new();
+        
+        if let Some(hash_table) = initial_values {
+            for value in hash_table.values() {
+                elements.push(value.shallow_clone());
+            }
+        }
+        
+        Ok(Vector { elements })
     }
 
     pub fn size(&self) -> i64 {

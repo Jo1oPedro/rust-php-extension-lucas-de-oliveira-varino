@@ -144,7 +144,10 @@ namespace Varinha {
     }
 
     class VarinhaVector {
-        public function __construct() {}
+        /**
+         * @param array|null $initial_values
+         */
+        public function __construct(?array $initial_values = null) {}
 
         /**
          * @param mixed $value
