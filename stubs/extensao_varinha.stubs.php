@@ -167,6 +167,80 @@ namespace Varinha {
         public function values(): array {}
     }
 
+    class VarinhaHashSet {
+        /**
+         * @param array|null $initial_values
+         */
+        public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
+
+        /**
+         * @param string $value
+         * @return bool
+         */
+        public function add(string $value): bool {}
+
+        /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
+         * @param string $value
+         * @return bool
+         */
+        public function contains(string $value): bool {}
+
+        /**
+         * @param \Varinha\VarinhaHashSet $other
+         * @return \Varinha\VarinhaHashSet
+         */
+        public function difference(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+
+        /**
+         * @param \Varinha\VarinhaHashSet $other
+         * @return \Varinha\VarinhaHashSet
+         */
+        public function intersection(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+
+        /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @param \Varinha\VarinhaHashSet $other
+         * @return bool
+         */
+        public function isSubset(\Varinha\VarinhaHashSet $other): bool {}
+
+        /**
+         * @param string $value
+         * @return bool
+         */
+        public function remove(string $value): bool {}
+
+        /**
+         * @return int
+         */
+        public function size(): int {}
+
+        /**
+         * @return array
+         */
+        public function toArray(): array {}
+
+        /**
+         * @param \Varinha\VarinhaHashSet $other
+         * @return \Varinha\VarinhaHashSet
+         */
+        public function union(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+    }
+
     class VarinhaQueue {
         /**
          * @param array|null $initial_values
