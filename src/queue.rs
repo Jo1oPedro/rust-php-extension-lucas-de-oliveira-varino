@@ -1,4 +1,5 @@
 use std::collections::VecDeque;
+use ext_php_rs::boxed::ZBox;
 use ext_php_rs::prelude::*;
 use ext_php_rs::types::{ZendHashTable, Zval};
 
@@ -51,4 +52,16 @@ impl Queue {
             .map(|value| value.shallow_clone())
             .ok_or_else(|| PhpException::default("queue is empty".into()))
     }
+
+    pub fn to_array(&self) -> PhpResult<ZBox<ZendHashTable>> {
+        let mut hash_table = ZendHashTable::new();
+
+        for element in &self.elements {
+            hash_table.push(element.shallow_clone());
+        }
+
+        Ok(hash_table)
+    }
+
+    pub fn __debug_info(&self) -> PhpResult<ZBox<ZendHashTable>> {self.to_array()}
 }

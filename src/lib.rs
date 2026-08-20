@@ -5,6 +5,7 @@ pub mod queue;
 pub mod hash_map;
 pub mod hash_set;
 pub mod priority_queue;
+pub mod common;
 
 use std::collections::HashMap;
 use ext_php_rs::prelude::*;

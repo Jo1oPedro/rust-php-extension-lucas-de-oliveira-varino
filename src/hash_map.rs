@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use ext_php_rs::boxed::ZBox;
 use ext_php_rs::prelude::*;
 use ext_php_rs::types::{ZendHashTable, Zval};
+use crate::common::zvals_to_array;
 
 #[php_class]
 #[php(name = "Varinha\\VarinhaHashMap")]
@@ -63,5 +64,9 @@ impl VarinhaHashMap {
         self.elements.get(&key)
             .map(|e| e.shallow_clone())
             .ok_or_else(|| PhpException::default("Key not found".into()))
+    }
+
+    pub fn __debug_info(&self) -> PhpResult<ZBox<ZendHashTable>> {
+        zvals_to_array(self.elements.values().map(|e| e.shallow_clone()))
     }
 }
