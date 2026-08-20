@@ -3,6 +3,13 @@
 // Stubs for extensao_varinha
 
 namespace Varinha {
+    interface Prioritizable {
+        /**
+         * @return float
+         */
+        public function getPriority(): float;
+    }
+
     class VarinhaArray {
         /**
          * @param int $capacity
@@ -239,6 +246,54 @@ namespace Varinha {
          * @return \Varinha\VarinhaHashSet
          */
         public function union(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+    }
+
+    class VarinhaPriorityQueue {
+        const MAX = false;
+
+        const MIN = true;
+
+        /**
+         * @param array|null $intial_values
+         * @param bool|null $is_min
+         */
+        public function __construct(?array $intial_values = null, ?bool $is_min = null) {}
+
+        /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
+
+        /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @return mixed
+         */
+        public function peek(): mixed {}
+
+        /**
+         * @param mixed $value
+         * @return int
+         */
+        public function push(mixed $value): int {}
+
+        /**
+         * @return int
+         */
+        public function size(): int {}
+
+        /**
+         * @return array
+         */
+        public function toArray(): array {}
     }
 
     class VarinhaQueue {

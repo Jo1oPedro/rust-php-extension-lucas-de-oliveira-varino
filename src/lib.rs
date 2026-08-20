@@ -4,9 +4,11 @@ pub mod stack;
 pub mod queue;
 pub mod hash_map;
 pub mod hash_set;
+pub mod priority_queue;
 
 use std::collections::HashMap;
 use ext_php_rs::prelude::*;
+use crate::priority_queue::PhpInterfacePrioritizable;
 
 #[php_function]
 pub fn varinha(mensagem: String) {
@@ -57,6 +59,8 @@ pub fn module(module: ModuleBuilder) -> ModuleBuilder {
         .class::<queue::Queue>()
         .class::<hash_map::VarinhaHashMap>()
         .class::<hash_set::VarinhaHashSet>()
+        .class::<priority_queue::VarinhaPriorityQueue>()
+        .interface::<PhpInterfacePrioritizable>()
         .function(wrap_function!(varinha))
         .function(wrap_function!(call_varinha))
         .function(wrap_function!(call_varinha_headers))
