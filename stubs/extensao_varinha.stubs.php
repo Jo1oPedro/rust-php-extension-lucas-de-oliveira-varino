@@ -105,6 +105,44 @@ namespace Varinha {
         public function size(): int {}
     }
 
+    class VarinhaQueue {
+        /**
+         * @param array|null $initial_values
+         */
+        public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
+         * @return mixed
+         */
+        public function dequeue(): mixed {}
+
+        /**
+         * @param mixed $value
+         * @return int
+         */
+        public function enqueue(mixed $value): int {}
+
+        /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @return mixed
+         */
+        public function peek(): mixed {}
+
+        /**
+         * @return int
+         */
+        public function size(): int {}
+    }
+
     class VarinhaVector {
         public function __construct() {}
 
