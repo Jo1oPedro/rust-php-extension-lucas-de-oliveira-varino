@@ -7,6 +7,7 @@ pub mod hash_set;
 pub mod priority_queue;
 pub mod common;
 pub mod btree_map;
+pub mod linked_list;
 
 use ext_php_rs::prelude::*;
 use crate::priority_queue::PhpInterfacePrioritizable;
