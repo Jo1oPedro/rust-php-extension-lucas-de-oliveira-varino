@@ -1,6 +1,6 @@
 # Como gerar os stubs PHP da extensão (para o PhpStorm)
 
-Guia rápido para regenerar os stubs `.php` da extensão `extensao_varinha`
+Guia rápido para regenerar os stubs `.php` da extensão `extensao_ds`
 (escrita em Rust com `ext-php-rs`). Os stubs servem só para o IDE
 (autocomplete, tipos, "undefined class") — não afetam a execução.
 
@@ -42,7 +42,7 @@ O `cargo-php` NÃO cria a pasta sozinho — por isso o `mkdir -p` antes.
 ```bash
 cd /home/cascata/extensao_varinha
 mkdir -p stubs
-cargo php stubs --out stubs/extensao_varinha.stubs.php
+cargo php stubs --out stubs/extensao_ds.stubs.php
 ```
 
 Ou, via cargo-make (task já definida no Makefile.toml):

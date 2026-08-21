@@ -6,13 +6,13 @@ use ext_php_rs::prelude::*;
 use ext_php_rs::types::{ZendHashTable, Zval};
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaBTreeMap")]
-pub struct VarinhaBTreeMap {
+#[php(name = "Ds\\DSBTreeMap")]
+pub struct DSBTreeMap {
     elements: BTreeMap<String, Zval>
 }
 
 #[php_impl]
-impl VarinhaBTreeMap {
+impl DSBTreeMap {
     pub fn __construct(initial_values: Option<&ZendHashTable>) -> PhpResult<Self> {
         let mut elements: BTreeMap<String, Zval> = BTreeMap::new();
 
@@ -22,7 +22,7 @@ impl VarinhaBTreeMap {
             }
         }
 
-        Ok(VarinhaBTreeMap { elements })
+        Ok(DSBTreeMap { elements })
     }
 
     pub fn put(&mut self, key: String, value: &Zval) -> PhpResult<()> {

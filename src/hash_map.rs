@@ -5,13 +5,13 @@ use ext_php_rs::types::{ZendHashTable, Zval};
 use crate::common::zvals_to_array;
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaHashMap")]
-pub struct VarinhaHashMap {
+#[php(name = "Ds\\DSHashMap")]
+pub struct DSHashMap {
     elements: HashMap<String, Zval>
 }
 
 #[php_impl]
-impl VarinhaHashMap {
+impl DSHashMap {
     pub fn __construct(initial_values: Option<&ZendHashTable>) -> PhpResult<Self> {
         let mut elements: HashMap<String, Zval> = HashMap::new();
 
@@ -21,7 +21,7 @@ impl VarinhaHashMap {
             }
         }
 
-        Ok(VarinhaHashMap { elements })
+        Ok(DSHashMap { elements })
     }
 
     pub fn has(&self, key: String) -> PhpResult<bool> { Ok(self.elements.contains_key(&key)) }

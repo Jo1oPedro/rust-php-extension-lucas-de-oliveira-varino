@@ -1,16 +1,9 @@
 <?php
 
-// Stubs for extensao_varinha
+// Stubs for extensao_ds
 
-namespace Varinha {
-    interface Prioritizable {
-        /**
-         * @return float
-         */
-        public function getPriority(): float;
-    }
-
-    class VarinhaArray {
+namespace Ds {
+    class DSArray {
         /**
          * @param int $capacity
          * @param string $array_type
@@ -117,7 +110,7 @@ namespace Varinha {
         public function size(): int {}
     }
 
-    class VarinhaBTreeMap {
+    class DSBTreeMap {
         /**
          * @param array|null $initial_values
          */
@@ -201,7 +194,7 @@ namespace Varinha {
         public function toArray(): array {}
     }
 
-    class VarinhaHashMap {
+    class DSHashMap {
         /**
          * @param array|null $initial_values
          */
@@ -268,7 +261,7 @@ namespace Varinha {
         public function values(): array {}
     }
 
-    class VarinhaHashSet {
+    class DSHashSet {
         /**
          * @param array|null $initial_values
          */
@@ -297,16 +290,16 @@ namespace Varinha {
         public function contains(string $value): bool {}
 
         /**
-         * @param \Varinha\VarinhaHashSet $other
-         * @return \Varinha\VarinhaHashSet
+         * @param \Ds\DSHashSet $other
+         * @return \Ds\DSHashSet
          */
-        public function difference(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+        public function difference(\Ds\DSHashSet $other): \Ds\DSHashSet {}
 
         /**
-         * @param \Varinha\VarinhaHashSet $other
-         * @return \Varinha\VarinhaHashSet
+         * @param \Ds\DSHashSet $other
+         * @return \Ds\DSHashSet
          */
-        public function intersection(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+        public function intersection(\Ds\DSHashSet $other): \Ds\DSHashSet {}
 
         /**
          * @return bool
@@ -314,10 +307,10 @@ namespace Varinha {
         public function isEmpty(): bool {}
 
         /**
-         * @param \Varinha\VarinhaHashSet $other
+         * @param \Ds\DSHashSet $other
          * @return bool
          */
-        public function isSubset(\Varinha\VarinhaHashSet $other): bool {}
+        public function isSubset(\Ds\DSHashSet $other): bool {}
 
         /**
          * @param string $value
@@ -336,13 +329,13 @@ namespace Varinha {
         public function toArray(): array {}
 
         /**
-         * @param \Varinha\VarinhaHashSet $other
-         * @return \Varinha\VarinhaHashSet
+         * @param \Ds\DSHashSet $other
+         * @return \Ds\DSHashSet
          */
-        public function union(\Varinha\VarinhaHashSet $other): \Varinha\VarinhaHashSet {}
+        public function union(\Ds\DSHashSet $other): \Ds\DSHashSet {}
     }
 
-    class VarinhaPriorityQueue {
+    class DSPriorityQueue {
         const MAX = false;
 
         const MIN = true;
@@ -385,7 +378,7 @@ namespace Varinha {
         public function size(): int {}
     }
 
-    class VarinhaQueue {
+    class DSQueue {
         /**
          * @param array|null $initial_values
          */
@@ -433,7 +426,7 @@ namespace Varinha {
         public function toArray(): array {}
     }
 
-    class VarinhaVector {
+    class DSVector {
         /**
          * @param array|null $initial_values
          */
@@ -541,20 +534,11 @@ namespace Varinha {
     }
 }
 
-namespace {
-    /**
-     * @return string
-     */
-    function call_varinha(): string {}
-
-    /**
-     * @return array
-     */
-    function call_varinha_headers(): array {}
-
-    /**
-     * @param string $mensagem
-     * @return void
-     */
-    function varinha(string $mensagem): void {}
+namespace Ds {
+    interface Prioritizable {
+        /**
+         * @return float
+         */
+        public function getPriority(): float;
+    }
 }

@@ -4,7 +4,7 @@ use ext_php_rs::types::{ZendHashTable, Zval};
 use crate::common::zvals_to_array;
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaVector")]
+#[php(name = "Ds\\DSVector")]
 pub struct Vector {
     elements: Vec<Zval>
 }

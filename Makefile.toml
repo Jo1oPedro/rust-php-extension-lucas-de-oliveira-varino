@@ -1,7 +1,7 @@
 [tasks.deploy]
 description = "Build release and install .so into local php"
 command = "sudo"
-args = ["cp", "target/release/libextensao_varinha.so", "/usr/lib/php/20240924/"]
+args = ["cp", "target/release/libextensao_ds.so", "/usr/lib/php/20240924/"]
 dependencies = ["build-release"]
 
 [tasks.build-release]
@@ -11,5 +11,5 @@ args = ["build", "--release"]
 [tasks.stubs]
 description = "Generate PHP IDE stub file from the extension source"
 command = "cargo"
-args = ["php", "stubs", "--out", "stubs/extensao_varinha.stubs.php"]
+args = ["php", "stubs", "--out", "stubs/extensao_ds.stubs.php"]
 dependencies = ["build-release"]

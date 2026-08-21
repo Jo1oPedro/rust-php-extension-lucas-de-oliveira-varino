@@ -5,13 +5,13 @@ use ext_php_rs::php_class;
 use ext_php_rs::types::ZendHashTable;
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaHashSet")]
-pub struct VarinhaHashSet {
+#[php(name = "Ds\\DSHashSet")]
+pub struct DSHashSet {
     elements: HashSet<String>,
 }
 
 #[php_impl]
-impl VarinhaHashSet {
+impl DSHashSet {
     pub fn __construct(initial_values: Option<&ZendHashTable>) -> PhpResult<Self> {
         let mut elements: HashSet<String> = HashSet::new();
 
@@ -22,7 +22,7 @@ impl VarinhaHashSet {
             }
         }
 
-        Ok(VarinhaHashSet { elements, })
+        Ok(DSHashSet { elements, })
     }
 
     pub fn contains(&self, value: String) -> bool { self.elements.contains(&value) }
@@ -37,34 +37,34 @@ impl VarinhaHashSet {
 
     pub fn clean(&mut self) -> () { self.elements.clear() }
 
-    pub fn union(&self, other: &VarinhaHashSet) -> VarinhaHashSet {
+    pub fn union(&self, other: &DSHashSet) -> DSHashSet {
         let elements = self.elements
             .union(&other.elements)
             .cloned()
             .collect();
 
-        VarinhaHashSet { elements }
+        DSHashSet { elements }
     }
 
-    pub fn intersection(&self, other: &VarinhaHashSet) -> VarinhaHashSet {
+    pub fn intersection(&self, other: &DSHashSet) -> DSHashSet {
         let elements = self.elements
             .intersection(&other.elements)
             .cloned()
             .collect();
 
-        VarinhaHashSet { elements }
+        DSHashSet { elements }
     }
 
-    pub fn difference(&self, other: &VarinhaHashSet) -> VarinhaHashSet {
+    pub fn difference(&self, other: &DSHashSet) -> DSHashSet {
         let elements = self.elements
             .difference(&other.elements)
             .cloned()
             .collect();
 
-        VarinhaHashSet { elements }
+        DSHashSet { elements }
     }
 
-    pub fn is_subset(&self, other: &VarinhaHashSet) -> bool { self.elements.is_subset(&other.elements) }
+    pub fn is_subset(&self, other: &DSHashSet) -> bool { self.elements.is_subset(&other.elements) }
 
     pub fn to_array(&self) -> PhpResult<ZBox<ZendHashTable>> {
         let mut hash_table = ZendHashTable::new();

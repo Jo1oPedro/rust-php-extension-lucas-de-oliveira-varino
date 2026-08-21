@@ -8,7 +8,7 @@ use crate::common::zvals_to_array;
 
 #[allow(dead_code)]
 #[php_interface]
-#[php(name =  "Varinha\\Prioritizable")]
+#[php(name =  "Ds\\Prioritizable")]
 trait Prioritizable {
     fn get_priority(&self) -> f64;
 }
@@ -41,14 +41,14 @@ impl PartialEq for Entry {
 impl Eq for Entry {}
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaPriorityQueue")]
-pub struct VarinhaPriorityQueue {
+#[php(name = "Ds\\DSPriorityQueue")]
+pub struct DSPriorityQueue {
     elements: BinaryHeap<Entry>,
     is_min: bool
 }
 
 #[php_impl]
-impl VarinhaPriorityQueue {
+impl DSPriorityQueue {
     const MAX: bool = false;
     const MIN: bool = true;
 
@@ -67,7 +67,7 @@ impl VarinhaPriorityQueue {
             }
         }
 
-        Ok(VarinhaPriorityQueue { elements, is_min: min })
+        Ok(DSPriorityQueue { elements, is_min: min })
     }
 
     pub fn push(&mut self, value: &Zval) -> PhpResult<i64> {
@@ -107,7 +107,7 @@ fn extract_priority(value: &Zval) -> PhpResult<f64> {
     } else if let Some(obj) = value.object() {
         let result = obj
             .try_call_method("getPriority", vec![])
-            .map_err(|_| PhpException::default("object must implement Varinha\\Prioritizable".into()))?;
+            .map_err(|_| PhpException::default("object must implement Ds\\Prioritizable".into()))?;
 
         result.double().ok_or_else(|| PhpException::default(
             "getPriority() must return a float".into()

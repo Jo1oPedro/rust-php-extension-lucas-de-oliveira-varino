@@ -6,7 +6,7 @@ use ext_php_rs::flags::DataType;
 use crate::common::zvals_to_array;
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaArray")]
+#[php(name = "Ds\\DSArray")]
 pub struct Array {
     elements: Vec<Zval>,
     array_type: String,

@@ -1,5 +1,5 @@
 [package]
-name = "extensao_varinha"
+name = "extensao_ds"
 version = "0.1.0"
 edition = "2024"
 
@@ -8,4 +8,3 @@ crate-type = ["cdylib"]
 
 [dependencies]
 ext-php-rs = "*"
-reqwest = { version = "0.13.4", features = ["json", "blocking"] }

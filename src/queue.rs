@@ -5,7 +5,7 @@ use ext_php_rs::types::{ZendHashTable, Zval};
 use crate::common::zvals_to_array;
 
 #[php_class]
-#[php(name = "Varinha\\VarinhaQueue")]
+#[php(name = "Ds\\DSQueue")]
 pub struct Queue {
     elements: VecDeque<Zval>,
 }

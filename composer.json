@@ -1,6 +1,6 @@
 {
-    "name": "varinha/extensao-varinha-stubs",
-    "description": "PHP IDE stubs for the extensao_varinha PHP extension (written in Rust with ext-php-rs).",
+    "name": "ds/extensao-ds-stubs",
+    "description": "PHP IDE stubs for the extensao_ds PHP extension (written in Rust with ext-php-rs).",
     "type": "library",
     "license": "MIT",
     "keywords": ["stubs", "ide", "phpstorm", "extension", "ext-php-rs"],
@@ -8,6 +8,6 @@
         "php": ">=8.4"
     },
     "suggest": {
-        "ext-extensao_varinha": "The actual native extension this package provides stubs for."
+        "ext-extensao_ds": "The actual native extension this package provides stubs for."
     }
 }
