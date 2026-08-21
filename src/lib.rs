@@ -6,6 +6,7 @@ pub mod hash_map;
 pub mod hash_set;
 pub mod priority_queue;
 pub mod common;
+pub mod btree_map;
 
 use std::collections::HashMap;
 use ext_php_rs::prelude::*;
@@ -62,6 +63,7 @@ pub fn module(module: ModuleBuilder) -> ModuleBuilder {
         .class::<hash_set::VarinhaHashSet>()
         .class::<priority_queue::VarinhaPriorityQueue>()
         .interface::<PhpInterfacePrioritizable>()
+        .class::<btree_map::VarinhaBTreeMap>()
         .function(wrap_function!(varinha))
         .function(wrap_function!(call_varinha))
         .function(wrap_function!(call_varinha_headers))

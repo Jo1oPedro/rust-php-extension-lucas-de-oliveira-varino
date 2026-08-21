@@ -18,6 +18,11 @@ namespace Varinha {
         public function __construct(int $capacity, string $array_type) {}
 
         /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
+
+        /**
          * @param mixed $value
          * @return int
          */
@@ -112,11 +117,100 @@ namespace Varinha {
         public function size(): int {}
     }
 
+    class VarinhaBTreeMap {
+        /**
+         * @param array|null $initial_values
+         */
+        public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
+
+        /**
+         * @return void
+         */
+        public function clean(): void {}
+
+        /**
+         * @return mixed
+         */
+        public function first(): mixed {}
+
+        /**
+         * @return string
+         */
+        public function firstKey(): string {}
+
+        /**
+         * @param string $key
+         * @return mixed
+         */
+        public function get(string $key): mixed {}
+
+        /**
+         * @param string $key
+         * @return bool
+         */
+        public function has(string $key): bool {}
+
+        /**
+         * @return bool
+         */
+        public function isEmpty(): bool {}
+
+        /**
+         * @return mixed
+         */
+        public function last(): mixed {}
+
+        /**
+         * @return string
+         */
+        public function lastKey(): string {}
+
+        /**
+         * @param string $key
+         * @param mixed $value
+         * @return void
+         */
+        public function put(string $key, mixed $value): void {}
+
+        /**
+         * @param string|null $from
+         * @param string|null $to
+         * @return array
+         */
+        public function range(?string $from = null, ?string $to = null): array {}
+
+        /**
+         * @param string $key
+         * @return mixed
+         */
+        public function remove(string $key): mixed {}
+
+        /**
+         * @return int
+         */
+        public function size(): int {}
+
+        /**
+         * @return array
+         */
+        public function toArray(): array {}
+    }
+
     class VarinhaHashMap {
         /**
          * @param array|null $initial_values
          */
         public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
 
         /**
          * @return void
@@ -289,11 +383,6 @@ namespace Varinha {
          * @return int
          */
         public function size(): int {}
-
-        /**
-         * @return array
-         */
-        public function toArray(): array {}
     }
 
     class VarinhaQueue {
@@ -301,6 +390,11 @@ namespace Varinha {
          * @param array|null $initial_values
          */
         public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
 
         /**
          * @return void
@@ -332,6 +426,11 @@ namespace Varinha {
          * @return int
          */
         public function size(): int {}
+
+        /**
+         * @return array
+         */
+        public function toArray(): array {}
     }
 
     class VarinhaVector {
@@ -339,6 +438,11 @@ namespace Varinha {
          * @param array|null $initial_values
          */
         public function __construct(?array $initial_values = null) {}
+
+        /**
+         * @return array
+         */
+        public function __debugInfo(): array {}
 
         /**
          * @param mixed $value

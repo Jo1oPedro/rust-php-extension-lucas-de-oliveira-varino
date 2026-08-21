@@ -6,6 +6,7 @@ use ext_php_rs::php_class;
 use ext_php_rs::types::{ZendHashTable, Zval};
 use crate::common::zvals_to_array;
 
+#[allow(dead_code)]
 #[php_interface]
 #[php(name =  "Varinha\\Prioritizable")]
 trait Prioritizable {
@@ -92,7 +93,7 @@ impl VarinhaPriorityQueue {
     pub fn is_empty(&self) -> bool { self.elements.is_empty() }
 
     pub fn clean(&mut self) -> () { self.elements.clear() }
-    
+
     pub fn __debug_info(&self) -> PhpResult<ZBox<ZendHashTable>> {
         zvals_to_array(self.elements.iter().map(|e| e.value.shallow_clone()))
     }

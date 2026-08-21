@@ -2,6 +2,7 @@ use std::collections::VecDeque;
 use ext_php_rs::boxed::ZBox;
 use ext_php_rs::prelude::*;
 use ext_php_rs::types::{ZendHashTable, Zval};
+use crate::common::zvals_to_array;
 
 #[php_class]
 #[php(name = "Varinha\\VarinhaQueue")]
@@ -57,11 +58,17 @@ impl Queue {
         let mut hash_table = ZendHashTable::new();
 
         for element in &self.elements {
-            hash_table.push(element.shallow_clone());
+            hash_table.push(element.shallow_clone())?;
         }
 
         Ok(hash_table)
     }
 
-    pub fn __debug_info(&self) -> PhpResult<ZBox<ZendHashTable>> {self.to_array()}
+    pub fn __debug_info(&self) -> PhpResult<ZBox<ZendHashTable>> {
+        zvals_to_array(
+            self.elements
+                .iter()
+                .map(|e| e.shallow_clone())
+        )
+    }
 }
